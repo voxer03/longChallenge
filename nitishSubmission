@@ -1,0 +1,40 @@
+#include<iostream>
+#include<vector>
+#include<algorithm>
+#define ll long long int
+#define fo( init, upto ) for( ll i = init; i <= upto; i++ )
+#define endl '\n'
+//#define pb push_back
+//#define v( type ) vector < type >
+#define mod 1000000007  // 1e9+7
+//#define debugg(x) cout << (#x) << " is " << (x) << endl  // For debugging. It prints the variable name and its value.
+using namespace std;
+int main(){
+    //raw();          // For local testing only.
+    ios_base::sync_with_stdio( false );
+    cin.tie( NULL );
+    cout.tie( NULL );
+    int T, N;
+    ll temp;
+    vector < ll > arr;
+    cin >> T;
+    while( T-- ){
+        cin >> N;
+        fo( 0, ( N - 1 ) ){
+            cin >> temp;
+            arr.push_back( temp );
+        }
+        sort( arr.begin(), arr.end(), greater< ll >() );
+        temp = 0;
+        for( int i = N - 1; i >= 0; i-- ){
+            temp += max( arr[ i ] - ( i ), 0 );
+            if( ( arr[ i ] - i ) < 0 ){
+                break;
+            }
+            temp %= mod;
+        }
+        cout << temp << endl;
+        arr.clear();
+    }
+    return 0;
+}
