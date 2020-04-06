@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+#define ll long long int
+using namespace std;
+#define endl "\n"
+#define mod 1000000007
+
+int main(){
+#ifndef ONLINE_JUDGE
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
+#endif
+
+    int t; cin>>t;
+
+    while(t--){
+        int n;
+        cin>>n;
+        int prv=-1;
+        int flag=0;
+        int input;
+       
+        for(int i=0;i<n;i++){
+            cin>>input;
+            if(input==1){
+                if(prv==-1){
+                    prv=i;
+                }
+                else if((i-prv)<6){
+                    flag=1;   
+                    break;
+                }
+                prv=i;      
+            }
+        }
+           
+        if(flag==1) cout<<"NO\n";
+        else cout<<"YES\n";
+
+    }
+    return 0;
+}
+
+
