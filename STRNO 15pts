@@ -1,0 +1,58 @@
+#include<bits/stdc++.h>
+#define ll long long int
+#define endl '\n'
+#define ONE 1
+#define ZERO 0
+using namespace std;
+bool fun( ll X, ll K );
+int main(){
+    //ios_base::sync_with_stdio( false );
+    //cin.tie( NULL );
+    //cout.tie( NULL );
+    #ifndef ONLINE_JUDGE
+    freopen( "input.txt", "r", stdin );
+    freopen( "output.txt", "w", stdout );
+    #endif
+    int T;
+    ll X, K;
+    cin >> T;
+    while( T-- ){
+        cin >> X >> K;
+        if( X == 1LL && K == 0LL ){ // For 1, X = 1 AND K = 0. ( because 1 is not prime ) 
+            cout << ONE << endl;
+            continue;
+        }
+        else if( X == 2LL && K == 1LL ){    // For every prime no. X = 2 AND K = 1.
+            cout << ONE << endl;
+            continue;
+        }
+        else if( X == 3LL && K == 1LL ){    // For any power of any prime no. X = 3 AND K = 1.
+            cout << ONE << endl;
+            continue;
+        }
+        else if( fun ( X, K ) ){
+            cout << ONE << endl;
+        }
+        else{
+            cout << ZERO << endl;
+        }
+    }
+    return 0;
+}
+bool fun( ll X, ll K ){
+    ll temp = X;
+    ll counter = 1LL;
+    for( int i = 2; i <= sqrt( X ) + 1; i++ ){
+        while( temp % i == 0 ){
+            if( ( ++counter ) >= K ){
+                return true;
+            }
+            temp /= i;
+        }
+        if( counter >= K ){
+            return true;
+        }
+    }
+    //cout << temp;
+    return false;
+}
